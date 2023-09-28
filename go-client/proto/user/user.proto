@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+package user;
+
+option go_package = "github.com/linkedin-sandbox/ob-proto-test/go-service/user";
+
+message UserData {
+  string username = 1;
+  string first_name = 2;
+  string last_name = 3;
+  // string email = 4; // New field added only in Go service
+}
+
+message GetUserDetailsRequest {
+  string username = 1;
+}
+
+message GetUserDetailsResponse {
+  UserData user_data = 1;
+}
+
+message UpdateUserDetailsRequest {
+  UserData user_data = 1;
+}
+
+message UpdateUserDetailsResponse {
+  UserData user_data = 1;
+}
+
+service UserService {
+  rpc GetUserDetails(GetUserDetailsRequest) returns (GetUserDetailsResponse);
+  rpc UpdateUserDetails(UpdateUserDetailsRequest) returns (UpdateUserDetailsResponse);
+ }
